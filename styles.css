@@ -1,0 +1,283 @@
+/* Chooser + options, Adobe Spectrum 2 look (like the DA editor). */
+:root {
+  --de-gray-25: #fff;
+  --de-gray-75: #f3f3f3;
+  --de-gray-300: #dadada;
+  --de-gray-700: #505050;
+  --de-gray-900: #131313;
+  --de-accent: #3b63fb;
+  --de-accent-hover: #274dea;
+  --de-negative: #d73220;
+  --de-font: "Adobe Clean", adobe-clean, "Source Sans Pro", -apple-system, "Segoe UI", roboto, sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: var(--de-gray-75);
+  color: var(--de-gray-900);
+  font: 14px/1.5 var(--de-font);
+}
+
+.da-env {
+  box-sizing: border-box;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.da-env h1 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.da-env p {
+  margin: 0;
+}
+
+.da-env [hidden] {
+  display: none;
+}
+
+.da-env :focus-visible {
+  outline: 2px solid var(--de-accent);
+  outline-offset: 2px;
+}
+
+.da-env-page {
+  color: var(--de-gray-700);
+  overflow-wrap: anywhere;
+}
+
+.da-env-list {
+  display: grid;
+  gap: 8px;
+  margin: 24px 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.da-env-list button {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  align-items: center;
+  column-gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  border: 2px solid var(--de-gray-300);
+  border-radius: 12px;
+  padding: 10px 16px;
+  background-color: var(--de-gray-25);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.da-env-list button:hover {
+  border-color: var(--de-accent);
+}
+
+.da-env-list button:disabled {
+  border-color: var(--de-gray-300);
+  border-style: dashed;
+  background-color: var(--de-gray-75);
+  cursor: default;
+}
+
+.da-env-current {
+  border-radius: 999px;
+  padding: 0 8px;
+  background-color: var(--de-gray-900);
+  color: var(--de-gray-25);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+.da-env-key {
+  grid-row: 1 / span 2;
+  grid-column: 1;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--de-gray-75);
+  font-weight: 700;
+}
+
+.da-env-list button:disabled .da-env-key {
+  background-color: var(--de-gray-25);
+}
+
+.da-env-name {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.da-env-host {
+  grid-column: 2;
+  min-width: 0;
+  color: var(--de-gray-700);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.da-env-hint {
+  color: var(--de-gray-700);
+  font-size: 12px;
+}
+
+.da-env .da-env-error {
+  margin-top: 24px;
+  color: var(--de-negative);
+  font-weight: 700;
+}
+
+/* options (also the toolbar popup) */
+.da-env-options {
+  width: 360px;
+  padding: 20px;
+}
+
+.da-env-options form {
+  margin-top: 16px;
+}
+
+.da-env-options label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.da-env-options textarea {
+  box-sizing: border-box;
+  width: 100%;
+  border: 2px solid var(--de-gray-300);
+  border-radius: 8px;
+  padding: 8px;
+  font: 13px/1.5 ui-monospace, monospace;
+}
+
+.da-env-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.da-env-options .da-env-actions button {
+  min-height: 40px;
+  border: 2px solid var(--de-accent);
+  border-radius: 999px;
+  padding: 0 18px;
+  background-color: var(--de-gray-25);
+  color: var(--de-accent);
+  font: 700 14px/1 var(--de-font);
+  cursor: pointer;
+}
+
+.da-env-options .da-env-actions button[type="submit"] {
+  background-color: var(--de-accent);
+  color: var(--de-gray-25);
+}
+
+.da-env-options .da-env-actions button[type="submit"]:hover {
+  background-color: var(--de-accent-hover);
+}
+
+.da-env .da-env-status:not(:empty) {
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+/* toolbar popup */
+.da-env-popup {
+  width: 340px;
+  padding: 16px;
+}
+
+.da-env-popup h1 {
+  font-size: 16px;
+}
+
+.da-env-popup .da-env-list {
+  margin: 12px 0 8px;
+}
+
+.da-env-tld {
+  display: flex;
+  gap: 4px;
+  margin: 12px 0 0;
+  border: 0;
+  border-radius: 999px;
+  padding: 3px;
+  background-color: var(--de-gray-300);
+}
+
+.da-env-tld legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.da-env-tld label {
+  flex: 1;
+  position: relative;
+}
+
+.da-env-tld input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.da-env-tld span {
+  display: block;
+  border-radius: 999px;
+  padding: 6px 8px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.da-env-tld input:checked + span {
+  background-color: var(--de-gray-25);
+}
+
+.da-env-tld input:focus-visible + span {
+  outline: 2px solid var(--de-accent);
+  outline-offset: 1px;
+}
+
+.da-env-popup .da-env-none {
+  margin-top: 8px;
+}
+
+.da-env-popup .da-env-foot {
+  margin-top: 12px;
+  text-align: right;
+}
+
+.da-env-settings {
+  border: 0;
+  padding: 4px;
+  background: none;
+  color: var(--de-accent-hover);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.da-env-options .da-env-hint + label {
+  margin-top: 16px;
+}

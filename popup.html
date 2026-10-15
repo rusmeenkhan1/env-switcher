@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Open on EDS</title>
+  <link rel="icon" href="icons/icon-32.png">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="popup.js"></script>
+</head>
+<body>
+  <main class="da-env da-env-popup">
+    <h1>Open this page on</h1>
+    <p class="da-env-page"></p>
+
+    <div class="da-env-ready" hidden>
+      <fieldset class="da-env-tld">
+        <legend>Version</legend>
+        <label><input type="radio" name="tld" value="page" checked><span>Preview (.page)</span></label>
+        <label><input type="radio" name="tld" value="live"><span>Live (.live)</span></label>
+      </fieldset>
+      <ul class="da-env-list" aria-label="Environments" data-current="Current"></ul>
+      <p class="da-env-hint">Press 1, 2, 3… to choose. The page opens in a new tab. The page you are on is marked Current.</p>
+    </div>
+
+    <p class="da-env-none" hidden>
+      This page isn't on a site you have set up, or on an EDS page.
+      Add the site in the settings: <code>www.example.com = repo--org</code>.
+    </p>
+
+    <p class="da-env-foot"><button type="button" class="da-env-settings">Settings</button></p>
+  </main>
+</body>
+</html>

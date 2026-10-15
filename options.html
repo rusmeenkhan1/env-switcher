@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Environment Switcher</title>
+  <link rel="icon" href="icons/icon-32.png">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="options.js"></script>
+</head>
+<body>
+  <main class="da-env da-env-options">
+    <h1>Environment Switcher</h1>
+    <p>Choose the environment a page opens on: after Preview or Publish in DA, and from the toolbar icon.</p>
+    <form novalidate>
+      <label for="da-env-text">Environments</label>
+      <textarea id="da-env-text" rows="5" spellcheck="false" aria-describedby="da-env-text-hint"></textarea>
+      <p class="da-env-hint" id="da-env-text-hint">
+        One per line: <code>NAME = branch</code>, for example <code>UAT = uat</code>.
+        Branches are lower case: a-z, 0-9 and -.
+      </p>
+
+      <label for="da-env-sites">Sites (for the toolbar icon)</label>
+      <textarea id="da-env-sites" rows="4" spellcheck="false" aria-describedby="da-env-sites-hint"></textarea>
+      <p class="da-env-hint" id="da-env-sites-hint">
+        One per line: the original site, then its EDS site, for example
+        <code>www.example.com = repo--org</code>. With or without <code>www.</code>.
+        Add a path to drop it from the URL: <code>www.example.com/content/brand = repo--org</code>.
+      </p>
+
+      <div class="da-env-actions">
+        <button type="submit">Save</button>
+        <button type="button" class="da-env-reset">Reset environments</button>
+      </div>
+      <p class="da-env-status" role="status"
+        data-saved="Saved."
+        data-reset="Environments reset to DEV / UAT / PRD."
+        data-empty="Add at least one environment."
+        data-invalid="Fix these lines:"></p>
+    </form>
+  </main>
+</body>
+</html>

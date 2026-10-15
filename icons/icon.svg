@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- DEV → UAT → PRD: one page, three environments (source for the PNGs) -->
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="#3b63fb"/>
+  <path d="M28 64h72" stroke="#fff" stroke-opacity="0.55" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="28" cy="64" r="12" fill="#c8d4ff"/>
+  <circle cx="64" cy="64" r="12" fill="#c8d4ff"/>
+  <circle cx="100" cy="64" r="16" fill="#fff"/>
+</svg>
