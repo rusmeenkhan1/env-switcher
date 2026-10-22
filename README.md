@@ -83,9 +83,7 @@ with AEM Code Sync on the repo.
 
 - **Try it / small team:** `chrome://extensions` → turn on **Developer mode** → **Load unpacked** → pick this
   folder.
-- **All authors:** zip the folder (`zip -r environment-switcher.zip . -x README.md`) and publish it on the Chrome Web
-  Store, as **Unlisted** or **Private** to your Google Workspace domain. Or your IT team can force-install it with
-  the `ExtensionInstallForcelist` Chrome policy.
+
 
 ## Permissions (why each one is needed)
 
