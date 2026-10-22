@@ -152,3 +152,31 @@ export const edsUrl = ({ repo, org, path }, branch, tld) => (
  * @returns {string} the URL
  */
 export const envUrl = (url, branch) => url.replace(/^https:\/\/main--/i, `https://${branch}--`);
+
+/**
+ * Find the original site URL for an EDS page.
+ * @param {{repo: string, org: string, path: string}} page the EDS page
+ * @param {object[]} sites the configured sites
+ * @returns {string|null} the original site URL, or null if no site is configured
+ */
+export function originalSiteUrl(page, sites) {
+  // Find a site that matches this repo--org
+  const site = sites.find((s) => s.repo === page.repo && s.org === page.org);
+  if (!site) return null;
+
+  // Reconstruct the original URL with .html extension
+  let path = page.path;
+
+  // Add .html extension if the path doesn't already have an extension
+  // and it's not the root path
+  if (path !== '/' && !path.match(/\.[a-z0-9]+$/i)) {
+    path = `${path}.html`;
+  }
+
+  // For root path, add /home.html or /index.html as a common pattern
+  if (path === '/') {
+    path = '/index.html';
+  }
+
+  return `https://${site.host}${site.prefix}${path}`;
+}

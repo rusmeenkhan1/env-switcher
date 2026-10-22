@@ -3,20 +3,47 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Choose an environment</title>
+  <title>Environment Switcher</title>
   <link rel="icon" href="icons/icon-32.png">
   <link rel="stylesheet" href="styles.css">
   <script type="module" src="chooser.js"></script>
 </head>
 <body>
   <main class="da-env">
-    <h1>Open on which environment?</h1>
-    <p class="da-env-page"
-      data-page="Preview of"
-      data-live="Published page"></p>
-    <ul class="da-env-list" aria-label="Environments" data-branch="branch"></ul>
-    <p class="da-env-hint">Press 1, 2, 3… to choose. Content is the same on every environment; only the code (branch) differs.</p>
-    <p class="da-env-error" role="alert" hidden>This page can't be opened: the link is not a DA preview or publish link.</p>
+    <div class="da-env-success-banner" hidden>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+        <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="da-env-success-content">
+        <strong class="da-env-success-title" data-page="Preview Successful" data-live="Publish Successful"></strong>
+        <p class="da-env-success-message" data-page="Your content has been previewed." data-live="Your content has been published and is now live."></p>
+      </div>
+    </div>
+
+    <header class="da-env-header">
+      <h1>Choose your environment</h1>
+      <p class="da-env-page"
+        data-page="Preview of"
+        data-live="Published page"></p>
+    </header>
+
+    <div class="da-env-section">
+      <h2 class="da-env-section-title">Available Environments</h2>
+      <ul class="da-env-list" aria-label="Environments" data-branch="branch"></ul>
+      <p class="da-env-hint">Press 1, 2, 3… to choose. Content is the same on every environment; only the code (branch) differs.</p>
+    </div>
+
+    <div class="da-env-empty-state" hidden>
+      <p class="da-env-error" role="alert">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2"/>
+          <path d="M24 16V26M24 30V32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <strong>Unable to open page</strong><br>
+        This link is not a DA preview or publish link.
+      </p>
+    </div>
   </main>
 </body>
 </html>

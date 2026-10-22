@@ -15,12 +15,21 @@ function go(branch) {
 
 async function init() {
   if (!match) {
-    document.querySelector('.da-env-error').hidden = false;
+    document.querySelector('.da-env-section').hidden = true;
+    document.querySelector('.da-env-empty-state').hidden = false;
     return;
   }
   const [, repo, org, tld, path = '/'] = match;
   const page = document.querySelector('.da-env-page');
   page.textContent = `${tld === 'live' ? page.dataset.live : page.dataset.page} ${org}/${repo}${path}`;
+
+  // Show success banner
+  const banner = document.querySelector('.da-env-success-banner');
+  const bannerTitle = document.querySelector('.da-env-success-title');
+  const bannerMessage = document.querySelector('.da-env-success-message');
+  banner.hidden = false;
+  bannerTitle.textContent = tld === 'live' ? bannerTitle.dataset.live : bannerTitle.dataset.page;
+  bannerMessage.textContent = tld === 'live' ? bannerMessage.dataset.live : bannerMessage.dataset.page;
 
   const envs = await getEnvs();
   envs.forEach(({ name, branch }, i) => {

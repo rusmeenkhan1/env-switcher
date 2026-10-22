@@ -4,7 +4,7 @@
  * one button per environment opens the matching EDS page in a new tab.
  */
 import {
-  edsPage, edsUrl, getEnvs, getSites,
+  edsPage, edsUrl, getEnvs, getSites, originalSiteUrl,
 } from './envs.js';
 
 const $ = (selector) => document.querySelector(selector);
@@ -75,6 +75,13 @@ async function init() {
   const [envs, sites, { tld: lastTld }] = await Promise.all([
     getEnvs(), getSites(), chrome.storage.local.get('tld'),
   ]);
+
+  // Check if on DA
+  if (tab && tab.url.startsWith('https://da.live')) {
+    $('.da-env-da').hidden = false;
+    return;
+  }
+
   const page = tab ? edsPage(tab.url, sites) : null;
   if (!page) {
     $('.da-env-none').hidden = false;
@@ -84,8 +91,24 @@ async function init() {
   // on an EDS page keep its .page / .live; elsewhere use the last choice
   const tld = page.tld || lastTld || 'page';
   document.querySelector(`input[name="tld"][value="${tld === 'live' ? 'live' : 'page'}"]`).checked = true;
+  $('.da-env-header h1').textContent = 'Open Page On';
   $('.da-env-page').textContent = `${page.org}/${page.repo}${page.path}`;
   $('.da-env-ready').hidden = false;
+
+  // If on an EDS page, show "Go to Original Site" button if we have the site configured
+  if (page.branch) {
+    const originalUrl = originalSiteUrl(page, sites);
+    if (originalUrl) {
+      $('.da-env-original').hidden = false;
+      $('.da-env-original-btn').addEventListener('click', () => {
+        chrome.tabs.create({
+          url: originalUrl, index: tab.index + 1, openerTabId: tab.id,
+        });
+        window.close();
+      });
+    }
+  }
+
   renderList(envs, page, tab);
 }
 
